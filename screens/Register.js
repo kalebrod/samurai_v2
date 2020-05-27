@@ -22,7 +22,7 @@ class Register extends React.Component {
     };
     
     sendregister = async () => {
-        fetch('https://samurai-v1.herokuapp.com/register', {
+        fetch('https://samurai-v1.herokuapp.com/api/register', {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',

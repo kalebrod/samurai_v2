@@ -26,7 +26,7 @@ class Login extends Component{
     };
 
     sendlogin = async () =>{ 
-        fetch('https://samurai-v1.herokuapp.com/login', {
+        fetch('https://samurai-v1.herokuapp.com/api/login', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
