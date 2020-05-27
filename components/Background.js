@@ -4,7 +4,8 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
-  Keyboard
+  Keyboard,
+  ScrollView,
 } from 'react-native';
 
 const DismissKeyboard = ({children}) => (
@@ -19,10 +20,12 @@ const Background = ({ children }) => (
             source={require('../assets/images/background_dots.png')}
             resizeMode="repeat"
             style={styles.background}
-        >
-            <KeyboardAvoidingView style={styles.container} behavior="padding">
-                {children}
-            </KeyboardAvoidingView>
+        >   
+            {/* <ScrollView contentContainerStyle={styles.scrollView}>
+            </ScrollView> */}
+              <KeyboardAvoidingView style={styles.container} >
+                  {children}
+              </KeyboardAvoidingView>
         </ImageBackground>
     </DismissKeyboard>
 );
@@ -33,13 +36,18 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   container: {
-    flex: 1,
-    padding: 20,
     width: '100%',
+    height:'100%',
     maxWidth: 340,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
+    //backgroundColor:'red'
+  },
+  scrollView:{
+    flex:1,
+    alignItems:"center",
+    justifyContent:'center',
   },
 });
 

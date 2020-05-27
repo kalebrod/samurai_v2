@@ -6,10 +6,11 @@ import {
     TouchableOpacity,
 } from 'react-native';
 
-import Background from '../components/Background'
-import Header from '../components/Header'
-import TextInput from '../components/TextInput'
-import Button from '../components/Button'
+import Background from '../components/Background';
+import Header from '../components/Header';
+import TextInput from '../components/TextInput';
+import Button from '../components/Button';
+import Title from '../components/Title';
 
 
 class Login extends Component{
@@ -53,7 +54,7 @@ class Login extends Component{
         return (
             
             <Background style={{flex:1}} behavior='padding'>
-                <Text style={styles.title}>Habla Facil!</Text>
+                <Title style={styles.title}>Habla Facil!</Title>
                 <Header>Bem-vindo</Header>
                 <TextInput 
                     label='Usuario'
@@ -91,7 +92,6 @@ class Login extends Component{
 
 const styles = StyleSheet.create({
     title:{
-        fontFamily:'pacifico',
         fontSize:40,
         color:'#d40c0c',
     },
