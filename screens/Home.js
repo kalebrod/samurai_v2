@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import Background from '../components/Background';
 import Header from '../components/Header';
-
+import Title from '../components/Title'
 import Paragraph from '../components/Paragraph';
 import Carousel from '../components/Carousel'
 
@@ -43,8 +43,9 @@ class Home extends Component{
               </View>
       
               <Background >
+                  <Title style={styles.title}>Habla Facil!</Title>
                   <View style={styles.containerTop}>
-                    <Header>Bem-Vindo!</Header>
+                    <Header>Bem-Vindo</Header>
                     <Text style={styles.text}>Seleccione uma aula para continuar</Text>
                     <View style={styles.container_carousel}>
                         <Carousel data={aulas}/>
@@ -54,7 +55,7 @@ class Home extends Component{
                       <Header>Tip do dia</Header>
                       <Paragraph style={{fontStyle: 'italic'}}>" Quédate en casa, así no te pones en peligro y practicas tu español "</Paragraph>
                     </View>
-                    <View style={styles.divider} />
+                    {/* <View style={styles.divider} /> */}
                
                   </View>
             </Background>
@@ -64,6 +65,11 @@ class Home extends Component{
 }
 
 const styles = StyleSheet.create({
+    title:{
+      fontSize:40,
+      color:'#d40c0c',
+      marginBottom:10,
+    },
     spacer:{
       height:34,
       backgroundColor:'white',
@@ -107,7 +113,7 @@ const styles = StyleSheet.create({
     },
     text:{
       fontSize:16,
-      marginBottom:5,
+      marginBottom:20,
     },
     container_carousel:{
       //flex:1,
