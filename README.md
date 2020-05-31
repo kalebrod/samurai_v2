@@ -19,8 +19,5 @@ Nesta repo esta alocada o app da plataforma de idiomas.
 
 
 ## Screenshots!
-![Imagen do homescreen](https://github.com/kalebrod/samurai_v2/blob/master/assets/screenshots/home.png)
-
-![Imagen do login](https://github.com/kalebrod/samurai_v2/blob/master/assets/screenshots/login.png)
-
-![Imagen do registro](https://github.com/kalebrod/samurai_v2/blob/master/assets/screenshots/register.png)
+Screenshots do app se encontran disponiveis neste endereço:
+https://github.com/kalebrod/samurai_v2/blob/master/assets/screenshots/
