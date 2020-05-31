@@ -21,8 +21,6 @@ const Background = ({ children }) => (
             resizeMode="repeat"
             style={styles.background}
         >   
-            {/* <ScrollView contentContainerStyle={styles.scrollView}>
-            </ScrollView> */}
               <KeyboardAvoidingView style={styles.container} >
                   {children}
               </KeyboardAvoidingView>
@@ -36,9 +34,10 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   container: {
+    flex:1,
     width: '100%',
     height:'100%',
-    maxWidth: 340,
+    paddingHorizontal: 30,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',

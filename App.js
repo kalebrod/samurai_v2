@@ -8,10 +8,11 @@ import Home from './screens/Home';
 
 const MainNavigator = createStackNavigator(
   {
-    Login: {screen: Login},
-    Register: {screen: Register},
-    Home: {screen: Home}
-  }
+    Login: {screen: Login,navigationOptions:  {headerShown: false,}},
+    Register: {screen: Register,navigationOptions:  {headerShown: false,}},
+    Home: {screen: Home,navigationOptions:  {headerShown: false,}},
+  },
+    
 );
 const App = createAppContainer(MainNavigator);
 

@@ -39,6 +39,7 @@ class Register extends React.Component {
         .then(responseJson => {
             alert(JSON.stringify(responseJson));
             console.log(responseJson);
+            this.props.navigation.navigate('Login');
         }).catch((error) =>{
             console.error(error);
         });
@@ -118,7 +119,7 @@ const styles = StyleSheet.create({
     },
     link: {
         fontWeight: 'bold',
-        color: theme.colors.primary,
+        color: '#ff6b6b',
     },
     test:{
         flex:1,

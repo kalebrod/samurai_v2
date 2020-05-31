@@ -4,14 +4,14 @@ import {
     Text,
     View,
     TouchableOpacity,
+    Keyboard,
 } from 'react-native';
+import AnimateLoadingButton from 'react-native-animate-loading-button'
 
 import Background from '../components/Background';
 import Header from '../components/Header';
 import TextInput from '../components/TextInput';
-import Button from '../components/Button';
 import Title from '../components/Title';
-
 
 class Login extends Component{
 
@@ -19,14 +19,16 @@ class Login extends Component{
         super(props);
         this.state = {
             id:'',
-            senha:''
+            senha:'',
         };
     }
     static navigationOptions ={
         headerShown: false,
     };
-
-    sendlogin = async () =>{ 
+    _onPressHandler(){
+        Keyboard.dismiss();
+        this.loadingButton.showLoading(true);
+        // mock
         fetch('https://samurai-v1.herokuapp.com/api/login', {
             method: 'POST',
             headers: {
@@ -39,14 +41,16 @@ class Login extends Component{
             }) })
             .then(response => response.json())
             //If response is in json then in success
-            .then(responseJson => {
-                this.props.navigation.navigate('Home')
-                console.log(responseJson);
+            .then(responseJson => {            
+                this.loadingButton.showLoading(false);
+                this.props.navigation.navigate('Home',{responseJson});
+                //console.log(responseJson);
             })
             //If response is not in json then in error
             .catch(error => {
                 alert(JSON.stringify(error));
                 console.error(error);
+                this.loadingButton.showLoading(false);
             });
     }
     render(){
@@ -71,13 +75,24 @@ class Login extends Component{
                     returnKeyType="done"
                     secureTextEntry
                 />
-                <Button
-                    mode = 'contained'
-                    onPress={this.sendlogin.bind(this)}
-                    
-                >
-                    Log In
-                </Button>
+
+                <View style={styles.button}>
+                    <AnimateLoadingButton
+                        ref={c => (this.loadingButton = c)}
+                        
+                        width={341}
+                        height={40}
+                        
+                        title= "Log In"
+                        titleFontSize={15}
+                        
+                        titleColor="rgb(255,255,255)"
+                        backgroundColor="#4ecdc4"
+                        borderRadius={4}
+                        onPress = {this._onPressHandler.bind(this)}
+                        />
+                </View>
+                
                 <View style={styles.row}>
                     <Text style={styles.label}>Não tem uma conta? </Text>
                     <TouchableOpacity onPress={() => navigate('Register')}>
@@ -98,16 +113,19 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: 'row',
         marginTop: 4,
-      },
-      link: {
+    },
+    link: {
         fontWeight: 'bold',
-        color: 'red',
-      },
-      forgotPassword: {
+        color: '#ff6b6b',
+    },
+    forgotPassword: {
         width: '100%',
         alignItems: 'flex-end',
         marginBottom: 24,
-      },
+    },
+    button:{
+        marginVertical: 10,
+    },  
 });
 
 export default Login
