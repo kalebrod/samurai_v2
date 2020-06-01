@@ -1,6 +1,7 @@
 # App do Habla Facil! 
 
 Nesta repo esta alocada o app da plataforma de idiomas. 
+O repositorio da api desta app se encontram em https://github.com/kalebrod/samurai_v1 
 
 ## Como executar? 
 
