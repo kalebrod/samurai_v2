@@ -7,7 +7,7 @@ import {
     Keyboard,
     Alert,
 } from 'react-native';
-import AnimateLoadingButton from 'react-native-animate-loading-button'
+import AnimateLoadingButton from 'react-native-animate-loading-button';
 
 import Background from '../components/Background';
 import Header from '../components/Header';
@@ -111,7 +111,7 @@ class Login extends Component{
                         backgroundColor="#4ecdc4"
                         borderRadius={4}
                         onPress = {this._onPressHandler.bind(this)}
-                        />
+                    />
                 </View>
                 
                 <View style={styles.row}>

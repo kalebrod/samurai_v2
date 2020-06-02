@@ -4,15 +4,17 @@ import {
   Text,
   StyleSheet,
   Image,
+  TouchableNativeFeedback,
+  TouchableOpacity,
 } from 'react-native';
 import Background from '../components/Background';
 import Header from '../components/Header';
-import Title from '../components/Title'
+import Title from '../components/Title';
 import Paragraph from '../components/Paragraph';
-import Carousel from '../components/Carousel'
+import Carousel from '../components/Carousel';
 
 import {theme} from '../core/theme';
-import {aulas} from '../appdata/data'
+import {aulas} from '../appdata/data';
 
 class Home extends Component{
     constructor(props){
@@ -28,6 +30,7 @@ class Home extends Component{
     static navigationOptions ={
         headerShown: false,
     };
+
     render(){
         const {navigate} = this.props.navigation
         return(
@@ -45,18 +48,16 @@ class Home extends Component{
               <Background >
                   <Title style={styles.title}>Habla Facil!</Title>
                   <View style={styles.containerTop}>
-                    <Header>Bem-Vindo</Header>
-                    <Text style={styles.text}>Seleccione uma aula para continuar</Text>
-                    <View style={styles.container_carousel}>
-                        <Carousel data={aulas}/>
-                    </View>  
-                    <View style={styles.divider} />
-                    <View>
-                      <Header>Tip do dia</Header>
-                      <Paragraph style={{fontStyle: 'italic'}}>" Quédate en casa, así no te pones en peligro y practicas tu español "</Paragraph>
-                    </View>
-                    {/* <View style={styles.divider} /> */}
-               
+                      <Header>Bem-Vindo</Header>
+                      <Text style={styles.text}>Seleccione uma aula para continuar</Text>
+                      <View style={styles.container_carousel}>
+                            <Carousel data={aulas} props={this.props} />
+                      </View>  
+                      <View style={styles.divider} />
+                      <View>
+                          <Header>Tip do dia</Header>
+                          <Paragraph style={{fontStyle: 'italic'}}>" Quédate en casa, así no te pones en peligro y practicas tu español "</Paragraph>
+                      </View>               
                   </View>
             </Background>
           </View>
