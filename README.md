@@ -1,6 +1,7 @@
 # App do Habla Facil! 
 
 Nesta repo esta alocada o app da plataforma de idiomas. 
+
 O repositorio da api desta app se encontram em https://github.com/kalebrod/samurai_v1 
 
 ## Como executar? 
@@ -11,12 +12,15 @@ O repositorio da api desta app se encontram em https://github.com/kalebrod/samur
 
 3. Fazer um clone ou baixar a repo no local desejado.
 
-4. Uma vez na pasta do repositorio é só digitar `npm start`
+4. Uma vez na pasta do repositorio tem que instalar qualquer dependencia que tiver o projeto, é só digitar `npm install`
 
-5. Para testar o app pode baixar a extençāo da expo aqui:
-   https://play.google.com/store/apps/details?id=host.exp.exponent&hl=pt_BR
+5. Quando tudo estiver instalado para rodar o projeto é só colocar `npm start` e prontinho!
+
+6. Para testar o app pode baixar a extençāo da expo aqui:
+
+Googleplay ->   https://play.google.com/store/apps/details?id=host.exp.exponent&hl=pt_BR
    
-   https://apps.apple.com/br/app/expo-client/id982107779
+Appstore -> https://apps.apple.com/br/app/expo-client/id982107779
 
 
 ## Screenshots!
