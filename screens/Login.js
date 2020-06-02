@@ -5,6 +5,7 @@ import {
     View,
     TouchableOpacity,
     Keyboard,
+    Alert,
 } from 'react-native';
 import AnimateLoadingButton from 'react-native-animate-loading-button'
 
@@ -25,33 +26,53 @@ class Login extends Component{
     static navigationOptions ={
         headerShown: false,
     };
-    _onPressHandler(){
+    _onPressHandler = async () =>{
         Keyboard.dismiss();
         this.loadingButton.showLoading(true);
-        // mock
-        fetch('https://samurai-v1.herokuapp.com/api/login', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                id: this.state.id,
-                senha: this.state.senha
-            }) })
-            .then(response => response.json())
-            //If response is in json then in success
-            .then(responseJson => {            
-                this.loadingButton.showLoading(false);
-                this.props.navigation.navigate('Home',{responseJson});
-                //console.log(responseJson);
-            })
-            //If response is not in json then in error
-            .catch(error => {
-                alert(JSON.stringify(error));
-                console.error(error);
-                this.loadingButton.showLoading(false);
-            });
+        
+        if(this.state.id==""){
+            this.loadingButton.showLoading(false);
+            Alert.alert(
+                'Login Invalido!', 
+                'Tente novamente ...',
+                [{text:'Ok'}],
+                {cancelable:false}
+            );
+        }else {
+            fetch('https://samurai-v1.herokuapp.com/api/login', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    id: this.state.id,
+                    senha: this.state.senha
+                }) })
+                .then(response => response.json())
+                .then(responseJson => {           
+                    this.loadingButton.showLoading(false);
+                    console.log(responseJson)
+                    if(responseJson.message =='FAILED'){
+                        Alert.alert(
+                            'Login Invalido!', 
+                            'Tente novamente ...',
+                            [{text:'Ok'}],
+                            {cancelable:false}
+                        );
+                        this.props.navigation.navigate('Login')
+                    }else{
+                        this.props.navigation.navigate('Home',{responseJson});
+                    }
+                    //console.log(responseJson);
+                })
+                //If response is not in json then in error
+                .catch(error => {
+                    //alert(JSON.stringify(error));
+                    console.error(error);
+                    this.loadingButton.showLoading(false);
+                });
+        }
     }
     render(){
         const {navigate} = this.props.navigation
@@ -80,7 +101,7 @@ class Login extends Component{
                     <AnimateLoadingButton
                         ref={c => (this.loadingButton = c)}
                         
-                        width={341}
+                        width={332}
                         height={40}
                         
                         title= "Log In"

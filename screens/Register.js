@@ -1,5 +1,16 @@
 import React, {Component} from 'react';
-import { TouchableOpacity, StyleSheet, View, Text, ScrollView, } from 'react-native';
+import { 
+    TouchableOpacity, 
+    StyleSheet, 
+    View, 
+    Text, 
+    Keyboard,
+    Alert,
+} 
+from 'react-native';
+
+import AnimateLoadingButton from 'react-native-animate-loading-button'
+
 import Header from '../components/Header';
 import Button from '../components/Button';
 import TextInput from '../components/TextInput';
@@ -21,29 +32,53 @@ class Register extends React.Component {
     static navigationOptions = {
         headerShown: false,
     };
-    
-    sendregister = async () => {
-        fetch('https://samurai-v1.herokuapp.com/api/register', {
-            method: 'PUT',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ 
-                id:this.state.id,
-                email:this.state.email,
-                senha:this.state.senha,
-                nome:this.state.nome
-            })
-        }).then(response => response.json())
-        //If response is in json then in success
-        .then(responseJson => {
-            alert(JSON.stringify(responseJson));
-            console.log(responseJson);
-            this.props.navigation.navigate('Login');
-        }).catch((error) =>{
-            console.error(error);
-        });
-    }
+    _onPressHandler = async () =>{
+        Keyboard.dismiss();
+        this.loadingButton.showLoading(true);
+
+        if(this.state.id == ""){
+            Alert.alert(
+                'Cadastro Invalido!',
+                'Tente novamente....',
+                [{text:'Ok'}],
+                {cancelable:false}
+            );
+            this.loadingButton.showLoading(false);
+        }else{
+
+            fetch('https://samurai-v1.herokuapp.com/api/register', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ 
+                    id:this.state.id,
+                    email:this.state.email,
+                    senha:this.state.senha,
+                    nome:this.state.nome
+                })
+            }).then(response => response.json())
+            //If response is in json then in success
+            .then(responseJson => {
+                this.loadingButton.showLoading(false);
+                if(responseJson.message == 'FAILED'){
+                    Alert.alert(
+                        'Cadastro Invalido!',
+                        'Tente novamente....',
+                        [{text:'Ok'}],
+                        {cancelable:false}
+                        );
+                        this.props.navigation.navigate('Register');
+                    }else{
+                        this.props.navigation.navigate('Login');
+                    }
+                }).catch((error) =>{
+                    console.error(error);
+                    this.loadingButton.showLoading(false);
+                });
+            }
+        }
+            
     render() {
         const {navigate} = this.props.navigation;
         
@@ -51,51 +86,64 @@ class Register extends React.Component {
             <Background style={{flex:1}} behavior='padding'>
                 <Title style={styles.title}>Habla Facil!</Title>
                 <Header>Criar conta</Header>
-                            <TextInput
-                                label="Email"
-                                returnKeyType="next"
-                                onChangeText={(email) => this.setState({email})}
-                                value={this.state.email}
-                                error=''
-                                errorText=''
-                                autoCapitalize="none"
-                                autoCompleteType="email"
-                                textContentType="emailAddress"
-                                keyboardType="email-address"
-                            />
-                                    
-                            <TextInput
-                                label="Nome de Usuario"
-                                onChangeText={(id) => this.setState({id})}
-                                returnKeyType="next"
-                                value={this.state.name}
-                                error=''
-                                errorText=''
-                                autoCapitalize="none"
-                            />
-                    
-                            <TextInput
-                                label="Nome"
-                                onChangeText={(nome) => this.setState({nome})}
-                                returnKeyType="next"
-                                value={this.state.name}
-                                error=''
-                                errorText=''
-                                autoCapitalize="none"
-                            />
-            
-                            <TextInput
-                                label="Senha"
-                                onChangeText={(senha) => this.setState({senha})}
-                                returnKeyType="done"
-                                value={this.state.password}
-                                error=''
-                                errorText=''
-                                secureTextEntry
-                            />
-                    <Button mode="contained" onPress={this.sendregister.bind(this)}>
-                        Registrar
-                    </Button>
+                <TextInput
+                    label="Email"
+                    returnKeyType="next"
+                    onChangeText={(email) => this.setState({email})}
+                    value={this.state.email}
+                    error=''
+                    errorText=''
+                    autoCapitalize="none"
+                    autoCompleteType="email"
+                    textContentType="emailAddress"
+                    keyboardType="email-address"
+                />
+                        
+                <TextInput
+                    label="Usuario"
+                    onChangeText={(id) => this.setState({id})}
+                    returnKeyType="next"
+                    value={this.state.name}
+                    error=''
+                    errorText=''
+                    autoCapitalize="none"
+                />
+        
+                <TextInput
+                    label="Nome"
+                    onChangeText={(nome) => this.setState({nome})}
+                    returnKeyType="next"
+                    value={this.state.name}
+                    error=''
+                    errorText=''
+                    autoCapitalize="none"
+                />
+
+                <TextInput
+                    label="Senha"
+                    onChangeText={(senha) => this.setState({senha})}
+                    returnKeyType="done"
+                    value={this.state.password}
+                    error=''
+                    errorText=''
+                    secureTextEntry
+                />
+                <View style={styles.button}>
+                    <AnimateLoadingButton
+                        ref={c => (this.loadingButton = c)}
+                        
+                        width={332}
+                        height={40}
+                        
+                        title= "Cadastrar-se!"
+                        titleFontSize={15}
+                        
+                        titleColor="rgb(255,255,255)"
+                        backgroundColor="#4ecdc4"
+                        borderRadius={4}
+                        onPress = {this._onPressHandler.bind(this)}
+                        />
+                </View>
 
                 <View style={styles.row}>
                     <Text style={styles.label}>Já tem uma conta? </Text>
@@ -125,7 +173,10 @@ const styles = StyleSheet.create({
         flex:1,
         justifyContent:'center',
         alignItems:'center',
-    },  
+    }, 
+    button:{
+        marginVertical: 10,
+    }, 
 });
  
 export default Register;
