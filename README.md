@@ -2,6 +2,8 @@
 
 Nesta repo esta alocada o app da plataforma de idiomas. 
 
+Caso não deseje executar em local pode testar por aqui https://expo.io/@kalrood/habla-facil
+
 O repositorio da api desta app se encontram em https://github.com/kalebrod/samurai_v1 
 
 ## Como executar? 
