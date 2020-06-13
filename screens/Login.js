@@ -34,7 +34,7 @@ class Login extends Component{
             this.loadingButton.showLoading(false);
             Alert.alert(
                 'Login Invalido!', 
-                'Tente novamente ...',
+                'Porfavor insere as informações necesarias.',
                 [{text:'Ok'}],
                 {cancelable:false}
             );
@@ -56,7 +56,7 @@ class Login extends Component{
                     if(responseJson.message =='FAILED'){
                         Alert.alert(
                             'Login Invalido!', 
-                            'Tente novamente ...',
+                            'Senha ou usuario incorreto, tente novamente.',
                             [{text:'Ok'}],
                             {cancelable:false}
                         );

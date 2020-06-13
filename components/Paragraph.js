@@ -14,7 +14,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 16,
     lineHeight: 26,
-    textAlign: 'center',
     marginBottom: 14,
   },
 });

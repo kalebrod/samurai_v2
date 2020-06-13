@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "samurai_v3",
-    "slug": "samurai_v3",
+    "name": "Habla Facil",
+    "slug": "habla-facil",
     "platforms": [
       "ios",
       "android",
@@ -23,6 +23,8 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": "",
+    "githubUrl": "https://github.com/kalebrod/samurai_v2"
   }
 }

@@ -15,7 +15,7 @@ const CarouselItem = ({item,props}) => {
     return (
         <View style={styles.cardView}>
             <TouchableOpacity
-                onPress={()=> props.navigation.navigate('Constru')}
+                onPress={()=> props.navigation.navigate(item.aula)}
             >
                 <Image style={styles.image} source={{uri: item.url}}/>
             </TouchableOpacity>

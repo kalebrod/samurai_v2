@@ -1,47 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, StyleSheet, Dimensions, FlatList, Animated } from 'react-native'
+import { View, StyleSheet, FlatList, Animated } from 'react-native'
+import { NativeModules } from "react-native";
+
 import CarouselItem from './CarouselItem'
-
-
-let flatList
-
-function infiniteScroll(dataList){
-    const numberOfData = dataList.length
-    let scrollValue = 0, scrolled = 0
-
-    setInterval(function() {
-        scrolled ++
-        if(scrolled < numberOfData){
-            scrollValue = scrollValue + 370
-
-        }else{
-            scrollValue = 0
-            scrolled = 0
-        }
-
-        this.flatList.scrollToOffset({ animated: true, offset: scrollValue})
-
-    }, 30000)
-}
-
 
 const Carousel = ({ data,props }) => {
     const scrollX = new Animated.Value(0)
     let position = Animated.divide(scrollX, 370)
     const [dataList, setDataList] = useState(data)
 
-    useEffect(()=> {
-        setDataList(data)
-        infiniteScroll(dataList)
-    })
-
-
-    //if (data && data.length) {
+    if (data && data.length) {
         return (
             <View style={{width:370}}>
                 <FlatList
-                    data={data}
-                    ref = {(flatList) => {this.flatList = flatList}}
+                    data={data}    
                     keyExtractor={(item, index) => 'key' + index}
                     horizontal
                     pagingEnabled
@@ -78,9 +50,9 @@ const Carousel = ({ data,props }) => {
         )
     }
 
-    // console.log('Please provide Images')
-    // return null
-// }
+    console.log('Please provide Images')
+    NativeModules.DevSettings.reload();
+}
 
 const styles = StyleSheet.create({
     dotView: { flexDirection: 'row', justifyContent: 'center' }

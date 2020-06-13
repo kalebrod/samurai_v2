@@ -12,6 +12,7 @@ const Button = ({ mode, style, children, ...props }: Props) => (
         style,
       ]}
       labelStyle={styles.text}
+      color="grey"
       mode={mode}
       {...props}
   >
@@ -21,13 +22,11 @@ const Button = ({ mode, style, children, ...props }: Props) => (
 
 const styles = StyleSheet.create({
   button: {
-    width: '100%',
-    marginVertical: 10,
-    backgroundColor:'#4ecdc4'
+      marginVertical: 10,
   },
   text: {
-    fontSize: 15,
-    lineHeight: 26,
+      fontSize: 15,
+      lineHeight: 26,
   },
 });
 

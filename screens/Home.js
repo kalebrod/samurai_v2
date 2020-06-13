@@ -56,7 +56,7 @@ class Home extends Component{
                       <View style={styles.divider} />
                       <View>
                           <Header>Tip do dia</Header>
-                          <Paragraph style={{fontStyle: 'italic'}}>" Quédate en casa, así no te pones en peligro y practicas tu español "</Paragraph>
+                          <Paragraph style={{fontStyle: 'italic',textAlign:'center'}}>" Quédate en casa, así no te pones en peligro y practicas tu español "</Paragraph>
                       </View>               
                   </View>
             </Background>

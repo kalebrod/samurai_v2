@@ -36,10 +36,10 @@ class Register extends React.Component {
         Keyboard.dismiss();
         this.loadingButton.showLoading(true);
 
-        if(this.state.id == ""){
+        if(this.state.id == '' || this.state.senha == '' || this.state.email == '' || this.state.nome == '' ){
             Alert.alert(
                 'Cadastro Invalido!',
-                'Tente novamente....',
+                'Porfavor insere as informações necesarias.',
                 [{text:'Ok'}],
                 {cancelable:false}
             );
@@ -64,7 +64,7 @@ class Register extends React.Component {
                 if(responseJson.message == 'FAILED'){
                     Alert.alert(
                         'Cadastro Invalido!',
-                        'Tente novamente....',
+                        'Usuario já existe, por favor inserir outro.',
                         [{text:'Ok'}],
                         {cancelable:false}
                         );
