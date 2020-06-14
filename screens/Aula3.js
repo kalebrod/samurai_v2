@@ -149,15 +149,15 @@ function Teoria({navigation,fathernav}){
                             " Nuestro viaje fue muy divertido "
                         </Text>
                     </View>
+                    <Button onPress={()=> navigation.navigate('Perguntas')}> 
+                        Comecar avaliaçāo
+                    </Button>
 
                     <View style={styles.navspace}></View>
                 </ScrollView>
                 <View style={styles.bview}>
                     <Button onPress={()=> fathernav('Home')}> 
                         <AntDesign name="leftcircle" size={24} color="black" />
-                    </Button>
-                    <Button onPress={()=> navigation.navigate('Perguntas')}> 
-                        <AntDesign name="rightcircle" size={24} color="black" />
                     </Button>
                 </View>
             </Background>
